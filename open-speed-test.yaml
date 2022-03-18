@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: open-speed-test
+spec:
+  selector:
+    app: open-speed-test
+  ports:
+  - port: 80
+    targetPort: 3000
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: open-speed-test
+spec:
+  selector:
+    matchLabels:
+      app: open-speed-test
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: open-speed-test
+        type: network
+    spec:
+      containers:
+      - name: open-speed-test
+        image: openspeedtest/latest
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 3000

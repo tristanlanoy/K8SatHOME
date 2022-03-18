@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    hajimari.io/enable: 'true'
+    hajimari.io/icon: lock
+    hajimari.io/appName	: Bitwarden
+  name: bwd-ingress
+spec:
+  rules:
+  - host: bwd.tristanlanoy.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+            service:
+              name: bitwarden-bitwarden-rs
+              port:
+                number: 80

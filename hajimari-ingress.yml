@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: default
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  name: hajimari-ingress
+spec:
+  rules:
+  - host: dashboard.tristanlanoy.com
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+            service:
+              name: hajimari
+              port:
+                number: 3000

@@ -1,0 +1,5 @@
+hajimari:
+  image.tag: v0.2.0
+  namespaceSelector:
+    matchNames:
+    - default

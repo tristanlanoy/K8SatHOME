@@ -20,6 +20,13 @@ nodes:
       - etcd
       - worker
       docker_socket: /var/run/docker.sock
+    - address: 192.168.1.203
+      user: rke-adm
+      role:
+      - controlplane
+      - etcd
+      - worker
+      docker_socket: /var/run/docker.sock
 ssh_key_path: rke
 cluster_name: K8s-at-home
 kubernetes_version: v1.22.5-rancher2-1
